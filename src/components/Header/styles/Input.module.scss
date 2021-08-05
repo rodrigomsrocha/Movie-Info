@@ -1,0 +1,33 @@
+@import "../../../assets/styles/colors";
+
+.input {
+  display: flex;
+  width: 370px;
+  input {
+    border: none;
+    color: $primary-black-color;
+    padding: 12px 10px;
+    flex: 1;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    &:focus {
+      border: 1px solid $secondary-color;
+    }
+    &::placeholder {
+      color: $secondary-white-color;
+    }
+  }
+  button {
+    border: none;
+    background-color: $secondary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 23px;
+    border-radius: 0 4px 4px 0;
+    transition: 0.3s;
+    &:hover {
+      background-color: $dark-secondary-color;
+    }
+  }
+}

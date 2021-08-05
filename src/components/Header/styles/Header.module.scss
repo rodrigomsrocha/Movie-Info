@@ -1,0 +1,16 @@
+@import "../../../assets/styles/colors";
+
+.container {
+  background-color: $primary-color;
+  .header {
+    svg {
+      cursor: pointer;
+    }
+    max-width: 1200px;
+    padding: 10px 30px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
