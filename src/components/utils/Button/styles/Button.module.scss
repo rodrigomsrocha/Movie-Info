@@ -1,0 +1,21 @@
+@import "../../../../assets/styles/colors";
+
+.button {
+  border: none;
+  background-color: $secondary-color;
+  color: $primary-white-color;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  width: 170px;
+  font-variant: small-caps;
+  font-size: 1.5rem;
+  letter-spacing: 5%;
+  transition: 0.3s;
+  gap: 10px;
+  &:hover {
+    background-color: $dark-secondary-color;
+  }
+}
