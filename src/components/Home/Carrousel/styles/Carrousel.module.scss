@@ -14,12 +14,14 @@
     position: relative;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.3);
     &:hover {
       div {
         animation: showInfo 0.3s forwards;
       }
     }
     div {
+      border-radius: 4px;
       position: absolute;
       top: 0;
       left: 0;
@@ -35,9 +37,9 @@
       opacity: 0;
     }
     img {
+      border-radius: 4px;
       width: 200px;
       height: 300px;
-      border-radius: 4px;
     }
   }
 }
