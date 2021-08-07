@@ -1,0 +1,105 @@
+@import "../../../assets/styles/colors";
+
+.modal_container {
+  min-width: 900px;
+  position: absolute;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  justify-content: center;
+  padding: 60px;
+  top: 50%;
+  left: 50%;
+  z-index: 1000000;
+  transform: translate(-50%, -50%);
+  color: $primary-white-color;
+  animation: scaleUp 0.3s forwards;
+  .poster {
+    position: relative;
+    .vote {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-color;
+      padding: 5px 20px;
+      border-radius: 4px;
+      gap: 10px;
+      h2 {
+        font-size: 1rem;
+        color: $primary-white-color;
+        font-weight: 400;
+      }
+    }
+    img {
+      border-radius: 4px;
+      width: 200px;
+      height: 300px;
+    }
+  }
+  .movie_details {
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .more_details {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: $secondary-white-color;
+      margin-bottom: 10px;
+      span {
+        font-size: 1rem;
+      }
+      .genres {
+        display: flex;
+        align-items: center;
+        position: relative;
+        span + span::before {
+          display: inline-block;
+          transform: translateY(-25%);
+          content: "";
+          margin: 0 5px;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: $secondary-white-color;
+        }
+      }
+    }
+    .overview {
+      max-width: 550px;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      color: $secondary-white-color;
+      font-style: italic;
+    }
+    .btns_container {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+}
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #303846aa;
+  z-index: 10000;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+}

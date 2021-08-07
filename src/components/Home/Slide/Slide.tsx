@@ -62,11 +62,12 @@ export const Slide: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
-        <Swiper pagination={{ clickable: true }} autoplay={{ delay: 3000 }}>
+        <Swiper pagination={{ clickable: true }} autoplay={{ delay: 5000 }}>
           {popular.map((movie) => (
             <SwiperSlide key={movie.id}>
               <SlideItem
                 key={movie.id}
+                id={movie.id}
                 poster_img={movie.poster_path}
                 title={movie.title}
                 runtime={movie.runtime}
