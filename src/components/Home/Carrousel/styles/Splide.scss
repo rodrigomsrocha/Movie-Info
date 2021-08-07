@@ -1,0 +1,19 @@
+@import "../../../../assets/styles/colors";
+
+.splide__arrow {
+  height: 100%;
+  background-color: $secondary-black-color;
+  svg {
+    fill: $primary-white-color;
+  }
+}
+
+.splide__arrow--prev {
+  border-radius: 4px 0 0 4px;
+  left: 0;
+}
+
+.splide__arrow--next {
+  border-radius: 0 4px 4px 0;
+  right: 0;
+}
