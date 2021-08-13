@@ -1,0 +1,30 @@
+@import "../../../assets/styles/colors";
+
+.actors_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  .actor {
+    display: flex;
+    gap: 20px;
+    .img {
+      background-color: $primary-black-color;
+      width: 70px;
+      height: 70px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 4px;
+    }
+    .empty_img {
+      background-color: $primary-black-color;
+      width: 70px;
+      height: 70px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 4px;
+      background-image: url("../../../assets/Vector.svg");
+    }
+  }
+}

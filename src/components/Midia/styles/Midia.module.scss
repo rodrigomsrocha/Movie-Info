@@ -1,0 +1,42 @@
+@import "../../../assets/styles/colors";
+.container {
+  padding: 60px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: $primary-black-color;
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .tabs {
+    display: flex;
+    color: $primary-white-color;
+    .tab {
+      background-color: $primary-color;
+      width: 170px;
+      text-align: center;
+      padding: 20px 0;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        background-color: $dark-primary-color;
+      }
+      &.active {
+        background-color: $secondary-color;
+      }
+    }
+  }
+  .content {
+    display: flex;
+    overflow-x: scroll;
+    background-color: $primary-black-color;
+    border: 2px solid $secondary-color;
+    border-radius: 0 4px 4px 4px;
+    color: $primary-white-color;
+    img {
+      max-width: 900px;
+    }
+  }
+}
