@@ -10,6 +10,7 @@ import { MovieModal } from "../../Modal/MovieModal";
 import styles from "./styles/Carrousel.module.scss";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "./styles/Splide.scss";
+import { ErrorModal } from "../../Modal/ErrorModal";
 
 type Genre = {
   id: number;
@@ -46,6 +47,8 @@ export const Carrousel = ({ movies, sectionTitle }: CarouselProps) => {
   const [movieId, setMovieId] = useState<number>(0);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [movieInfo, setMovieInfo] = useState<MovieInfo>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   function openModal(id: number) {
     setModalIsOpen(true);
@@ -61,6 +64,7 @@ export const Carrousel = ({ movies, sectionTitle }: CarouselProps) => {
     const getMovieDetail = async () => {
       try {
         if (movieId !== 0) {
+          setLoading(true);
           const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-BR`
           );
@@ -102,6 +106,9 @@ export const Carrousel = ({ movies, sectionTitle }: CarouselProps) => {
         }
       } catch (error) {
         console.log(error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     getMovieDetail();
@@ -110,12 +117,17 @@ export const Carrousel = ({ movies, sectionTitle }: CarouselProps) => {
   return (
     <div className={styles.container}>
       <h1>{sectionTitle}</h1>
-      <MovieModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        movieId={movieId}
-        movieInfo={movieInfo}
-      />
+      {error ? (
+        <ErrorModal isOpen={modalIsOpen} onRequestClose={closeModal} />
+      ) : (
+        <MovieModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          movieId={movieId}
+          movieInfo={movieInfo}
+          loading={loading}
+        />
+      )}
       <Splide
         options={{
           rewind: true,

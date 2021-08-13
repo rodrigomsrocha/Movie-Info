@@ -1,0 +1,38 @@
+@import "../../../assets/styles/colors";
+
+.modal_container {
+  min-width: 900px;
+  position: absolute;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px;
+  top: 50%;
+  left: 50%;
+  z-index: 1000000;
+  transform: translate(-50%, -50%);
+  color: $primary-white-color;
+  background-color: $primary-black-color;
+  h2 {
+    font-size: 1.125rem;
+  }
+}
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #303846aa;
+  z-index: 10000;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+}

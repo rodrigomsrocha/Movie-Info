@@ -8,6 +8,7 @@ import styles from "./styles/SlideItem.module.scss";
 import { MovieModal } from "../../Modal/MovieModal";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { ErrorModal } from "../../Modal/ErrorModal";
 
 type Genre = {
   id: number;
@@ -44,6 +45,8 @@ export const SlideItem = (props: SlideItemProps) => {
   const [movieId, setMovieId] = useState<number>(0);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [movieInfo, setMovieInfo] = useState<MovieInfo>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   function openModal(id: number) {
     setModalIsOpen(true);
@@ -59,6 +62,7 @@ export const SlideItem = (props: SlideItemProps) => {
     const getMovieDetail = async () => {
       try {
         if (movieId !== 0) {
+          setLoading(true);
           const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-BR`
           );
@@ -100,6 +104,9 @@ export const SlideItem = (props: SlideItemProps) => {
         }
       } catch (error) {
         console.log(error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     getMovieDetail();
@@ -110,20 +117,29 @@ export const SlideItem = (props: SlideItemProps) => {
       className={styles.movie_container}
       style={{
         background: `
-        radial-gradient(
-          92.7% 919.8% at 3.77% 50%, #212733 5.69%,rgba(76, 83, 97, 0.6) 32.78%,
-          rgba(76, 83, 97, 0.6) 69.97%, #212733 93.03%
-        ),
-        url("${props.backdrop_img}") no-repeat center / cover
+          ${
+            props.backdrop_img !== null || !loading
+              ? `radial-gradient(
+            92.7% 919.8% at 3.77% 50%, #212733 5.69%,rgba(76, 83, 97, 0.6) 32.78%,
+            rgba(76, 83, 97, 0.6) 69.97%, #212733 93.03%
+          ),
+          url("${props.backdrop_img}") no-repeat center / cover`
+              : "#303846"
+          }
         `,
       }}
     >
-      <MovieModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        movieId={movieId}
-        movieInfo={movieInfo}
-      />
+      {error ? (
+        <ErrorModal isOpen={modalIsOpen} onRequestClose={closeModal} />
+      ) : (
+        <MovieModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          movieId={movieId}
+          movieInfo={movieInfo}
+          loading={loading}
+        />
+      )}
       <img src={props.poster_img} alt={props.title} />
       <div className={styles.movie_info}>
         <h1>{props.title}</h1>
