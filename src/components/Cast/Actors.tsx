@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./styles/Actors.module.scss";
+import { Subtitle } from "./Subtitle";
+
+import { Worker } from "./Worker";
 
 type Actor = {
   name: string;
@@ -15,12 +18,13 @@ type ActorsTypes = {
 
 type ActorProps = {
   id: string;
-  isOpen: boolean;
   children?: React.ReactNode;
 };
 
 export const Actors = (props: ActorProps) => {
   const [cast, setCast] = useState<ActorsTypes>();
+
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
     const getActors = async () => {
@@ -57,30 +61,25 @@ export const Actors = (props: ActorProps) => {
   }
 
   return (
-    <div
-      className={`${styles.actors_container}`}
-      style={{
-        display: props.isOpen ? "grid" : "none",
-      }}
-    >
-      {cast.cast.map((actor) => (
-        <div className={styles.actor} key={actor.id}>
-          {actor.profile_path.slice(-4) === "null" ? (
-            <div className={styles.empty_img}></div>
-          ) : (
-            <div
-              className={styles.img}
-              style={{
-                backgroundImage: `url(${actor.profile_path})`,
-              }}
-            ></div>
-          )}
-          <div className={styles.info}>
-            <h2>{actor?.name}</h2>
-            <span>{actor?.character}</span>
+    <>
+      <Subtitle isOpen={isOpen} setIsOpen={setIsOpen} sub="Atores" />
+      <div
+        className={`${styles.actors_container}`}
+        style={{
+          display: isOpen ? "grid" : "none",
+        }}
+      >
+        {cast.cast.map((actor) => (
+          <div key={actor.id}>
+            <Worker
+              name={actor.name}
+              profile_path={actor.profile_path}
+              id={actor.id}
+              character={actor.character}
+            />
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };

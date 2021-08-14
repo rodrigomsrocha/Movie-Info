@@ -1,0 +1,38 @@
+@import "../../../assets/styles/colors";
+
+.worker {
+  display: flex;
+  gap: 20px;
+  .img {
+    background-color: $primary-black-color;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px;
+  }
+  .empty_img {
+    background-color: $primary-black-color;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px;
+    background-image: url("../../../assets/Vector.svg");
+  }
+  .info {
+    h2 {
+      color: $primary-black-color;
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    span {
+      color: $terciary-black-color;
+      font-size: 0.875rem;
+      font-weight: 400;
+    }
+  }
+}
