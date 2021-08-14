@@ -1,0 +1,11 @@
+.subtitle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
